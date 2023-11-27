@@ -4,6 +4,7 @@ import 'package:data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tweet/tweet.dart';
+import 'package:tweet/view/list/tweet_list.dart';
 
 import '../widget/bottom_bar.dart';
 
@@ -47,7 +48,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: IndexedStack(
           index: _page,
-          children: const [Text("")],
+          children: const [TweetList()],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: onCreateTweet,

@@ -16,6 +16,7 @@ class ReusableAppBar extends StatelessWidget {
         color: Pallete.blueColor,
       ),
       centerTitle: true,
+      automaticallyImplyLeading: false,
     );
   }
 }

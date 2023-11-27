@@ -10,11 +10,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:data/data.dart' as _i4;
 import 'package:domain/usecase/auth/check_user_session.dart' as _i3;
-import 'package:domain/usecase/auth/signin_email_password.dart' as _i8;
-import 'package:domain/usecase/auth/signup_email_password.dart' as _i9;
+import 'package:domain/usecase/auth/signin_email_password.dart' as _i9;
+import 'package:domain/usecase/auth/signup_email_password.dart' as _i10;
 import 'package:domain/usecase/tweet/create_tweet.dart' as _i5;
 import 'package:domain/usecase/tweet/create_tweet_with_image.dart' as _i6;
-import 'package:domain/usecase/user/get_user_data.dart' as _i7;
+import 'package:domain/usecase/tweet/get_tweet_stream.dart' as _i7;
+import 'package:domain/usecase/user/get_user_data.dart' as _i8;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -37,13 +38,15 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i4.ITweetRepository>(),
           gh<_i4.IStorageRepository>(),
         ));
-    gh.factory<_i7.GetUserData>(() => _i7.GetUserData(
+    gh.factory<_i7.GetTweetStream>(
+        () => _i7.GetTweetStream(gh<_i4.ITweetRepository>()));
+    gh.factory<_i8.GetUserData>(() => _i8.GetUserData(
           gh<_i4.IAuthRepository>(),
           gh<_i4.IUserRepository>(),
         ));
-    gh.factory<_i8.SignInEmailPassword>(
-        () => _i8.SignInEmailPassword(gh<_i4.IAuthRepository>()));
-    gh.factory<_i9.SignUpEmailPassword>(() => _i9.SignUpEmailPassword(
+    gh.factory<_i9.SignInEmailPassword>(
+        () => _i9.SignInEmailPassword(gh<_i4.IAuthRepository>()));
+    gh.factory<_i10.SignUpEmailPassword>(() => _i10.SignUpEmailPassword(
           gh<_i4.IUserRepository>(),
           gh<_i4.IAuthRepository>(),
         ));
