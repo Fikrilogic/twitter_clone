@@ -28,6 +28,8 @@ dependencies:
     path: ../../data
   commons:
     path: ../../commons
+  timeago: ^3.6.0
+  any_link_preview: ^3.0.1
 
 dev_dependencies:
   flutter_test:

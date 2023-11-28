@@ -15,3 +15,5 @@ export 'usecase/user/get_user_data.dart';
 //tweet
 export 'usecase/tweet/create_tweet.dart';
 export 'usecase/tweet/create_tweet_with_image.dart';
+export 'usecase/tweet/get_tweet.dart';
+export 'usecase/tweet/get_tweet_stream.dart';

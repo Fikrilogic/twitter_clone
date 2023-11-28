@@ -9,7 +9,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:domain/domain.dart' as _i4;
-import 'package:domain/usecase/tweet/get_tweet_stream.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:tweet/view/create/bloc/create_tweet_bloc.dart' as _i3;
@@ -31,8 +30,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i4.CreateTweet>(),
           gh<_i4.CreateTweetWithImage>(),
         ));
-    gh.factory<_i5.TweetListBloc>(
-        () => _i5.TweetListBloc(gh<_i6.GetTweetStream>()));
+    gh.factory<_i5.TweetListBloc>(() => _i5.TweetListBloc(
+          gh<_i4.GetTweetStream>(),
+          gh<_i4.GetTweet>(),
+        ));
     return this;
   }
 }

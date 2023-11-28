@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tweet/view/list/bloc/tweet_list_bloc.dart';
+import 'package:tweet/view/widget/tweet_card.dart';
 
 class TweetList extends StatefulWidget {
   const TweetList({super.key});
@@ -15,6 +16,7 @@ class _TweetListState extends State<TweetList> {
 
   @override
   void initState() {
+    _tweetListBloc.add(const OnLoadTweet());
     _tweetListBloc.add(const OnLoadTweetLatest());
   }
 
@@ -22,8 +24,14 @@ class _TweetListState extends State<TweetList> {
   Widget build(BuildContext context) {
     return BlocProvider<TweetListBloc>.value(
       value: _tweetListBloc,
-      child: const Column(
-        children: [Text('')],
+      child: BlocBuilder<TweetListBloc, TweetListInitial>(
+        builder: (context, state) => ListView.builder(
+          itemCount: state.tweets.length,
+          itemBuilder: (BuildContext context, int index) {
+            final tweet = state.tweets[index];
+            return TweetCard(tweet: tweet);
+          },
+        ),
       ),
     );
   }

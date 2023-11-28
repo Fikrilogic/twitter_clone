@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:data/model/tweet/tweet_model.dart';
-import 'package:domain/usecase/tweet/get_tweet_stream.dart';
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
+import 'package:domain/dto/tweet/tweet_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,9 +12,11 @@ part 'tweet_list_state.dart';
 @injectable
 class TweetListBloc extends Bloc<TweetListEvent, TweetListInitial> {
   final GetTweetStream _getTweetStream;
+  final GetTweet _getTweet;
 
-  TweetListBloc(this._getTweetStream) : super(const TweetListInitial()) {
+  TweetListBloc(this._getTweetStream, this._getTweet) : super(const TweetListInitial()) {
     on<OnLoadTweetLatest>(_onLoadTweetLatest);
+    on<OnLoadTweet>(_onLoadTweet);
   }
 
   void _onLoadTweetLatest(
@@ -29,6 +32,13 @@ class TweetListBloc extends Bloc<TweetListEvent, TweetListInitial> {
       onDone: () {
         print('stream close');
       },
+    );
+  }
+
+  void _onLoadTweet(OnLoadTweet event, Emitter<TweetListInitial> emit)async {
+    var tweets = await _getTweet.execute(const GetTweetInput());
+    emit(
+      state.copyWith(tweets: tweets)
     );
   }
 }

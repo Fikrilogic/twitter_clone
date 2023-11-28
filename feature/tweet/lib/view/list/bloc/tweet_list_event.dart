@@ -13,3 +13,13 @@ class OnLoadTweetLatest extends TweetListEvent {
   List<Object?> get props => [];
 
 }
+
+class OnLoadTweet extends TweetListEvent {
+
+  const OnLoadTweet();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
+}
